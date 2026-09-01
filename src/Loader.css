@@ -1,4 +1,4 @@
-.incinerate-loader{
+.incinerate-loader {
   --black: #030000;
   --deep-red: #180000;
   --crimson: #5c0800;
@@ -23,16 +23,16 @@
 }
 
 /* Ambient subtle atmospheric glow */
-.ambience-layer{
+.ambience-layer {
   position: absolute;
   inset: 0;
-  background: radial-gradient(closest-side at 50% 50%, rgba(255,115,0,0.06) 0%, rgba(164,10,10,0.03) 20%, transparent 40%), linear-gradient(180deg, rgba(24,0,0,0.7), rgba(0,0,0,0.95));
+  background: radial-gradient(closest-side at 50% 50%, rgba(255, 115, 0, 0.06) 0%, rgba(164, 10, 10, 0.03) 20%, transparent 40%), linear-gradient(180deg, rgba(24, 0, 0, 0.7), rgba(0, 0, 0, 0.95));
   opacity: 0;
   animation: ambienceIn 1000ms ease-out 0s forwards;
 }
 
 /* Very subtle grain for cinematic texture */
-.grain-layer{
+.grain-layer {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><filter id='g'><feTurbulence baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23g)' opacity='0.02' fill='black'/></svg>");
@@ -42,19 +42,32 @@
   opacity: 0.03;
 }
 
-@keyframes ambienceIn{
-  0%{opacity:0}
-  100%{opacity:1}
+@keyframes ambienceIn {
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
 }
 
-@keyframes grainFade{
-  0%{opacity:0}
-  60%{opacity:0.03}
-  100%{opacity:0.02}
+@keyframes grainFade {
+  0% {
+    opacity: 0
+  }
+
+  60% {
+    opacity: 0.03
+  }
+
+  100% {
+    opacity: 0.02
+  }
 }
 
 /* Reactor / plasma area */
-.reactor-wrapper{
+.reactor-wrapper {
   position: absolute;
   width: min(60vmin, 720px);
   height: min(60vmin, 720px);
@@ -63,29 +76,40 @@
   pointer-events: none;
 }
 
-.reactor-ring{
+.reactor-ring {
   position: absolute;
   width: 64%;
   height: 64%;
   border-radius: 50%;
   top: 18%;
   left: 18%;
-  box-shadow: 0 0 40px rgba(255,115,0,0.06), inset 0 0 30px rgba(255,60,0,0.08);
-  background: conic-gradient(from 0deg, rgba(255,115,0,0.08), rgba(255,60,0,0.04), transparent 40%);
+  box-shadow: 0 0 40px rgba(255, 115, 0, 0.06), inset 0 0 30px rgba(255, 60, 0, 0.08);
+  background: conic-gradient(from 0deg, rgba(255, 115, 0, 0.08), rgba(255, 60, 0, 0.04), transparent 40%);
   transform: scale(0.8) rotate(0deg);
   opacity: 0;
   filter: blur(6px);
-  animation: ringIgnite 1200ms cubic-bezier(.2,.9,.2,1) 700ms forwards;
+  animation: ringIgnite 1200ms cubic-bezier(.2, .9, .2, 1) 700ms forwards;
 }
 
-@keyframes ringIgnite{
-  0%{opacity:0;transform:scale(0.7) rotate(0deg)}
-  40%{opacity:0.7;transform:scale(1.02) rotate(24deg);}
-  100%{opacity:0.14;transform:scale(1) rotate(60deg);}
+@keyframes ringIgnite {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(0deg)
+  }
+
+  40% {
+    opacity: 0.7;
+    transform: scale(1.02) rotate(24deg);
+  }
+
+  100% {
+    opacity: 0.14;
+    transform: scale(1) rotate(60deg);
+  }
 }
 
 /* Plasma layers - staggered for irregular movement */
-.plasma{
+.plasma {
   position: absolute;
   width: 90%;
   height: 90%;
@@ -94,28 +118,77 @@
   opacity: 0;
   mix-blend-mode: screen;
 }
-.plasma-deep{background: radial-gradient(circle at 50% 60%, rgba(92,8,0,0.7), rgba(24,0,0,0.12) 40%, transparent 60%); animation: plasmaDeep 1200ms ease-out 800ms forwards;}
-.plasma-mid{background: radial-gradient(circle at 50% 60%, rgba(165,22,5,0.65), rgba(92,8,0,0.08) 35%, transparent 60%); animation: plasmaMid 1200ms ease-out 900ms forwards;}
-.plasma-hot{background: radial-gradient(circle at 50% 55%, rgba(255,77,0,0.92), rgba(255,115,0,0.36) 30%, transparent 55%); animation: plasmaHot 1000ms ease-out 1.1s forwards; mix-blend-mode: color-dodge; filter: blur(28px) contrast(1.05);} 
 
-@keyframes plasmaDeep{
-  0%{opacity:0;transform:translateY(30px) scale(0.9)}
-  50%{opacity:0.9;transform:translateY(0px) scale(1.05)}
-  100%{opacity:0.28;transform:translateY(-18px) scale(1.12)}
+.plasma-deep {
+  background: radial-gradient(circle at 50% 60%, rgba(92, 8, 0, 0.7), rgba(24, 0, 0, 0.12) 40%, transparent 60%);
+  animation: plasmaDeep 1200ms ease-out 800ms forwards;
 }
-@keyframes plasmaMid{
-  0%{opacity:0;transform:translateY(40px) scale(0.9) rotate(8deg)}
-  50%{opacity:1;transform:translateY(-6px) scale(1.08) rotate(-6deg)}
-  100%{opacity:0.36;transform:translateY(-36px) scale(1.15) rotate(6deg)}
+
+.plasma-mid {
+  background: radial-gradient(circle at 50% 60%, rgba(165, 22, 5, 0.65), rgba(92, 8, 0, 0.08) 35%, transparent 60%);
+  animation: plasmaMid 1200ms ease-out 900ms forwards;
 }
-@keyframes plasmaHot{
-  0%{opacity:0;transform:scale(0.8) rotate(-4deg)}
-  35%{opacity:1;transform:scale(1.08) rotate(12deg)}
-  100%{opacity:0.9;transform:scale(1.22) rotate(30deg)}
+
+.plasma-hot {
+  background: radial-gradient(circle at 50% 55%, rgba(255, 77, 0, 0.92), rgba(255, 115, 0, 0.36) 30%, transparent 55%);
+  animation: plasmaHot 1000ms ease-out 1.1s forwards;
+  mix-blend-mode: color-dodge;
+  filter: blur(28px) contrast(1.05);
+}
+
+@keyframes plasmaDeep {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9)
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateY(0px) scale(1.05)
+  }
+
+  100% {
+    opacity: 0.28;
+    transform: translateY(-18px) scale(1.12)
+  }
+}
+
+@keyframes plasmaMid {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9) rotate(8deg)
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.08) rotate(-6deg)
+  }
+
+  100% {
+    opacity: 0.36;
+    transform: translateY(-36px) scale(1.15) rotate(6deg)
+  }
+}
+
+@keyframes plasmaHot {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-4deg)
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1.08) rotate(12deg)
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: scale(1.22) rotate(30deg)
+  }
 }
 
 /* Center composition holding the logo */
-.loader-center{
+.loader-center {
   position: relative;
   z-index: 40;
   width: min(60vw, 800px);
@@ -125,25 +198,32 @@
   pointer-events: none;
 }
 
-.loader-logo-center{
+.loader-logo-center {
   width: 55vw;
   max-width: 720px;
   height: auto;
   opacity: 0;
   transform-origin: center center;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.7));
-  animation: logoForge 1.8s cubic-bezier(.2,.8,.2,1) 1.5s forwards;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+  animation: logoForge 1.8s cubic-bezier(.2, .8, .2, 1) 1.5s forwards;
 }
 
-@keyframes logoForge{
-  0%{opacity:0;transform:translateY(18px) scale(0.96);filter:drop-shadow(0 0 0 rgba(0,0,0,0))}
-  40%{opacity:1;transform:translateY(0px) scale(1.04);filter:drop-shadow(0 30px 60px rgba(255,115,0,0.35))}
-  65%{filter:drop-shadow(0 36px 86px rgba(255,115,0,0.6));}
-  100%{opacity:1;transform:translateY(0) scale(1);filter:drop-shadow(0 6px 18px rgba(255,115,0,0.18))}
+@keyframes logoForge {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 20px 40px rgba(255, 115, 0, 0.25));
+  }
 }
 
 /* Energy sweep across the logo */
-.energy-sweep{
+.energy-sweep {
   position: absolute;
   z-index: 52;
   width: 120%;
@@ -151,104 +231,234 @@
   left: -10%;
   top: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,200,100,0.06) 35%, rgba(255,115,0,0.45) 48%, rgba(255,200,100,0.06) 58%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 200, 100, 0.06) 35%, rgba(255, 115, 0, 0.45) 48%, rgba(255, 200, 100, 0.06) 58%, transparent 100%);
   transform: translateX(-120%) skewX(-8deg);
   filter: blur(8px) brightness(1.1) saturate(1.2);
   mix-blend-mode: screen;
-  animation: sweepMove 1000ms cubic-bezier(.2,.9,.1,1) 3.0s forwards;
+  animation: sweepMove 1000ms cubic-bezier(.2, .9, .1, 1) 3.0s forwards;
 }
 
-@keyframes sweepMove{
-  0%{transform:translateX(-120%) skewX(-8deg);opacity:0}
-  30%{opacity:0.75}
-  60%{transform:translateX(20%) skewX(-4deg);opacity:1}
-  100%{transform:translateX(120%) skewX(-2deg);opacity:0}
+@keyframes sweepMove {
+  0% {
+    transform: translateX(-120%) skewX(-8deg);
+    opacity: 0
+  }
+
+  30% {
+    opacity: 0.75
+  }
+
+  60% {
+    transform: translateX(20%) skewX(-4deg);
+    opacity: 1
+  }
+
+  100% {
+    transform: translateX(120%) skewX(-2deg);
+    opacity: 0
+  }
 }
 
 /* Embers/particles */
-.embers{
+.embers {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 20;
 }
-.embers.front{z-index:60}
-.embers.distant{z-index:8}
 
-.ember{
+.embers.front {
+  z-index: 60
+}
+
+.embers.distant {
+  z-index: 8
+}
+
+.ember {
   position: absolute;
   border-radius: 999px;
   background: radial-gradient(circle at 30% 30%, var(--white-hot), var(--hot-orange));
-  box-shadow: 0 0 6px rgba(255,115,0,0.9), 0 0 16px rgba(255,60,0,0.6);
+  box-shadow: 0 0 6px rgba(255, 115, 0, 0.9), 0 0 16px rgba(255, 60, 0, 0.6);
   transform-origin: center center;
   animation-name: emberFloat;
-  animation-timing-function: cubic-bezier(.25,.8,.2,1);
+  animation-timing-function: cubic-bezier(.25, .8, .2, 1);
   animation-fill-mode: both;
   animation-iteration-count: infinite;
 }
-.ember-dot{border-radius:50%}
-.ember-spark{border-radius:4px}
 
-@keyframes emberFloat{
-  0%{opacity:0;transform:rotate(var(--rot,0)) translateY(0) translateX(0) scale(1)}
-  10%{opacity:1}
-  60%{transform:rotate(var(--rot,0)) translateX(calc(var(--vx, 0px) * 0.55)) translateY(calc(var(--vy, 0px) * 0.55)) scale(1)}
-  100%{opacity:0;transform:rotate(var(--rot,0)) translateX(var(--vx, 0px)) translateY(var(--vy, 0px)) scale(0.45)}
+.ember-dot {
+  border-radius: 50%
+}
+
+.ember-spark {
+  border-radius: 4px
+}
+
+@keyframes emberFloat {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--rot, 0)) translateY(0) translateX(0) scale(1)
+  }
+
+  10% {
+    opacity: 1
+  }
+
+  60% {
+    transform: rotate(var(--rot, 0)) translateX(calc(var(--vx, 0px) * 0.55)) translateY(calc(var(--vy, 0px) * 0.55)) scale(1)
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(var(--rot, 0)) translateX(var(--vx, 0px)) translateY(var(--vy, 0px)) scale(0.45)
+  }
 }
 
 /* Heat-glow variations */
-.ember-dot{background: radial-gradient(circle at 40% 30%, var(--hot-yellow), var(--hot-orange) 40%, rgba(165,22,5,0.6) 70%)}
-.ember-spark{background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,115,0,0.9)); box-shadow: 0 0 10px rgba(255,115,0,0.9), 0 0 24px rgba(255,60,0,0.6)}
+.ember-dot {
+  background: radial-gradient(circle at 40% 30%, var(--hot-yellow), var(--hot-orange) 40%, rgba(165, 22, 5, 0.6) 70%)
+}
+
+.ember-spark {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(255, 115, 0, 0.9));
+  box-shadow: 0 0 10px rgba(255, 115, 0, 0.9), 0 0 24px rgba(255, 60, 0, 0.6)
+}
 
 /* Final burst */
-.final-burst{
+.final-burst {
   position: absolute;
   width: 140vmax;
   height: 140vmax;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%) scale(0.2);
+  transform: translate(-50%, -50%) scale(0.2);
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255,200,100,0.95) 0%, rgba(255,115,0,0.34) 25%, rgba(165,22,5,0.12) 45%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(255, 200, 100, 0.95) 0%, rgba(255, 115, 0, 0.34) 25%, rgba(165, 22, 5, 0.12) 45%, transparent 60%);
   opacity: 0;
   pointer-events: none;
   mix-blend-mode: screen;
   filter: blur(28px) saturate(1.2);
-  animation: finalBurstAnim 800ms cubic-bezier(.2,.9,.1,1) 4.5s forwards;
+  animation: finalBurstAnim 800ms cubic-bezier(.2, .9, .1, 1) 4.5s forwards;
 }
 
-@keyframes finalBurstAnim{
-  0%{opacity:0;transform:translate(-50%,-50%) scale(0.3)}
-  35%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-  100%{opacity:0;transform:translate(-50%,-50%) scale(1.6)}
+@keyframes finalBurstAnim {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3)
+  }
+
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1)
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.6)
+  }
 }
 
 /* Cinematic exit: contract/fade rather than simple opacity */
-.incinerate-loader{
-  animation: loaderExit 800ms ease-in 5.0s forwards;
+.incinerate-loader {
+  animation: revealPage 600ms ease-out 2.5s forwards;
 }
 
-@keyframes loaderExit{
-  0%{clip-path:circle(120% at 50% 50%);opacity:1}
-  60%{clip-path:circle(42% at 50% 50%);opacity:0.9}
-  100%{clip-path:circle(0% at 50% 50%);opacity:0;visibility:hidden}
+@keyframes loaderFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(8px);
+    visibility: hidden;
+  }
+}
+
+.loader-exit {
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.08);
+}
+
+@keyframes revealPage {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(24px);
+    transform: scale(1.15);
+  }
+}
+
+@keyframes loaderExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(12px);
+  }
 }
 
 /* Responsive tweaks */
-@media (max-width: 900px){
-  .loader-logo-center{width:65vw}
-  .reactor-wrapper{width:75vmin;height:75vmin}
+@media (max-width: 900px) {
+  .loader-logo-center {
+    width: 65vw
+  }
+
+  .reactor-wrapper {
+    width: 75vmin;
+    height: 75vmin
+  }
 }
-@media (max-width: 480px){
-  .loader-logo-center{width:78vw}
-  .plasma{filter:blur(18px)}
-  .final-burst{filter:blur(18px)}
+
+@media (max-width: 480px) {
+  .loader-logo-center {
+    width: 78vw
+  }
+
+  .plasma {
+    filter: blur(18px)
+  }
+
+  .final-burst {
+    filter: blur(18px)
+  }
 }
 
 /* Accessibility: respects prefers-reduced-motion */
-@media (prefers-reduced-motion: reduce){
-  .ambience-layer, .grain-layer, .plasma, .reactor-ring, .energy-sweep, .final-burst, .ember{animation-duration: 1ms !important; animation-delay: 0ms !important;}
-  .loader-logo-center{animation-duration: 600ms !important; animation-delay: 200ms !important}
-  .incinerate-loader{animation: none !important; opacity:1}
-}
+@media (prefers-reduced-motion: reduce) {
 
+  .ambience-layer,
+  .grain-layer,
+  .plasma,
+  .reactor-ring,
+  .energy-sweep,
+  .final-burst,
+  .ember {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+
+  .loader-logo-center {
+    animation-duration: 600ms !important;
+    animation-delay: 200ms !important
+  }
+
+  .incinerate-loader {
+    animation: none !important;
+    opacity: 1
+  }
+}

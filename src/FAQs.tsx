@@ -1,30 +1,32 @@
 import { useState } from "react";
+import "./Timeline.css";
+import SectionHead from './components/SectionHead.jsx'
 
 const faqs = [
   {
     question: "Who can participate in INCINERATE?",
     answer:
-      "INCINERATE is open to students, aspiring founders, and innovators who want to build and pitch real solutions. Teams and solo participants are welcome, provided they meet the eligibility criteria outlined in the official guidelines.",
+      "INCINERATE is open to all students, aspiring founders, developers, and creators interested in technology, product creation, and entrepreneurship regardless of their experience level.",
   },
   {
     question: "How do I register for the event?",
     answer:
-      "Registration opens through the official INCINERATE portal. Click the Ignite Project button, complete your team and idea details, and submit before the registration deadline to secure your spot.",
+      'Click the "Start Your Application" button in the application section, submit your single-paragraph proposal explaining your problem statement and team credentials before the registration deadline.',
   },
   {
     question: "What happens during the Build Phase?",
     answer:
-      "During the Build Phase, participants refine their ideas, develop prototypes, and receive mentorship through workshops, review sessions, and accelerator-style support programs designed to strengthen product and business execution.",
+      "During the Build Phase (The Refinery), teams focus on rapid development, mentor reviews, user validation testing, and building functional prototypes ready for final evaluation.",
   },
   {
     question: "When and where is the final pitch?",
     answer:
-      "The final pitching arena takes place on 4th October 2026 at Jain University, Kochi. Shortlisted teams will present their solutions to mentors and evaluators for feedback and recognition.",
+      "The final pitch (The Inferno) will be hosted live in front of a panel of judges and investors. Specific venue details and schedules will be communicated to shortlisted teams.",
   },
   {
     question: "Is there a prize pool?",
     answer:
-      "Yes. INCINERATE features a prize pool for outstanding teams and projects. Details on categories, amounts, and eligibility are shared in the Prize Pool section and official event brief.",
+      "Yes, winning teams will receive cash prizes, acceleration opportunities, investor pitch access, and community support resources.",
   },
 ];
 
@@ -36,29 +38,39 @@ export default function FAQs() {
   };
 
   return (
-    <section id="faqs" className="section-container">
-      <h2 className="section-title">FAQs</h2>
-      <div className="glass-card">
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className={`faq-item ${activeFaq === index ? "faq-item-active" : ""}`}
-            >
-              <button
-                type="button"
-                className="faq-question"
-                onClick={() => toggleFaq(index)}
-                aria-expanded={activeFaq === index}
+    <section id="faqs" className="section ">
+      <div className="wrap">
+        {/* Section Header */}
+        <SectionHead eyebrow="FAQS" title="FREQUENTLY ASKED QUESTIONS." />
+
+        {/* FAQ Accordions */}
+        <div className="faqs-list">
+          {faqs.map((faq, index) => {
+            const isActive = activeFaq === index;
+            return (
+              <div
+                key={index}
+                className={`accordion-item ${isActive ? "active" : ""}`}
               >
-                <span>{faq.question}</span>
-                <span className="faq-icon">+</span>
-              </button>
-              {activeFaq === index && (
-                <p className="faq-answer">{faq.answer}</p>
-              )}
-            </div>
-          ))}
+                <button
+                  type="button"
+                  className="accordion-header"
+                  onClick={() => toggleFaq(index)}
+                  aria-expanded={isActive}
+                >
+                  <span className="accordion-question">{faq.question}</span>
+                  <span className={`accordion-icon ${isActive ? "rotated" : ""}`}>
+                    +
+                  </span>
+                </button>
+                <div
+                  className={`accordion-content ${isActive ? "open" : ""}`}
+                >
+                  <p className="accordion-answer">{faq.answer}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

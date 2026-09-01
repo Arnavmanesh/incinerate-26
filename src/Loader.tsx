@@ -8,7 +8,7 @@ export default function Loader({ onComplete }: Props) {
 
   // Total timeline is ~6000ms. Trigger onComplete at the end.
   useEffect(() => {
-    const timer = setTimeout(() => onComplete(), 6000);
+    const timer = setTimeout(() => onComplete(), 3000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
@@ -95,7 +95,6 @@ export default function Loader({ onComplete }: Props) {
           className="loader-logo-center"
         />
 
-        <div className="energy-sweep" />
 
         <div className="embers front">
           {particles.slice(Math.floor(particles.length * 0.45)).map(p => (
@@ -120,7 +119,6 @@ export default function Loader({ onComplete }: Props) {
       </div>
 
       {/* Final flash / burst (timed) */}
-      <div className="final-burst" />
     </div>
   );
 }

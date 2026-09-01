@@ -69,12 +69,13 @@ export default function BackgroundCanvas() {
           Math.min(Math.max(progressWithinSection, 0), 1) * Math.PI
         );
       }
-      const translateY = height * 0.5 - (progressWithinSection - 0.5) * height * 0.6;
+      const translateY = height * 0.45 - (progressWithinSection - 0.5) * height * 0.3;
 
       for (let i = 0; i < lineCount; i++) {
         ctx!.beginPath();
 
-        const baseAlpha = Math.sin((i / lineCount) * Math.PI) * 0.45 + 0.1;
+        const progress = i / (lineCount - 1);
+        const baseAlpha = Math.pow(Math.sin(progress * Math.PI), 1.8) * 0.55;
         const finalAlpha = baseAlpha * gapVisibility;
         if (finalAlpha <= 0.01) continue;
 
