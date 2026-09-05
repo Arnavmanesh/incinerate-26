@@ -69,6 +69,23 @@ export default function Nav() {
     }
   }, [open])
 
+  useEffect(() => {
+    if (!open) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
+
   function go(e, id) {
     e.preventDefault()
     setOpen(false)
@@ -128,31 +145,53 @@ export default function Nav() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {open ? (
-          <motion.nav
-            className="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-          >
-            {LINKS.map(([id, label]) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={(e) => go(e, id)}
-              >
-                {label}
-              </a>
-            ))}
-
-            <a
-              href="#apply"
-              className="mobile-apply"
-              onClick={(e) => go(e, 'apply')}
+          <div className="mobile-menu-layer">
+            <motion.button
+              type="button"
+              className="mobile-menu-backdrop"
+              aria-label="Close menu"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.nav
+              className="mobile-menu"
+              aria-label="Mobile navigation"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
-              Apply Now
-            </a>
-          </motion.nav>
+              <button
+                type="button"
+                className="mobile-menu-close"
+                aria-label="Close menu"
+                onClick={() => setOpen(false)}
+              >
+                <span />
+                <span />
+              </button>
+
+              {LINKS.map(([id, label]) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  onClick={(e) => go(e, id)}
+                >
+                  {label}
+                </a>
+              ))}
+
+              <a
+                href="#apply"
+                className="mobile-apply"
+                onClick={(e) => go(e, 'apply')}
+              >
+                Apply Now
+              </a>
+            </motion.nav>
+          </div>
         ) : null}
       </AnimatePresence>
     </header>

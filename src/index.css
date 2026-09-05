@@ -1467,3 +1467,105 @@ RESPONSIVE
     inset 0 -20px 30px rgba(0, 0, 0, .22);
 
 }
+
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (max-width: 639px) {
+  .hero-section {
+    width: 100%;
+    padding: 132px 16px 32px;
+  }
+
+  .collab-row,
+  .title-wrap {
+    width: 100%;
+  }
+
+  .collab-x {
+    width: min(425px, 100%);
+  }
+
+  .tagline {
+    max-width: 100%;
+    line-height: 1.5;
+  }
+
+  .subtitle {
+    max-width: 38rem;
+  }
+
+  .date-row {
+    width: 100%;
+    gap: 16px;
+  }
+
+  .date-box,
+  .date-box2 {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 20px;
+  }
+
+  .countdown-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    transform: none;
+  }
+
+  .countdown-row .sep-dots {
+    display: none;
+  }
+
+  .countdown-row .flip-unit {
+    width: 100%;
+  }
+
+  .btn-cta {
+    max-width: 100%;
+    padding-inline: 20px;
+    white-space: normal;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-inline: 1rem;
+  }
+
+  .section-head {
+    margin-bottom: 2.25rem;
+  }
+
+  .section-head h2,
+  .section-title {
+    font-size: clamp(1.7rem, 8vw, 2.3rem);
+    letter-spacing: 0.08em;
+  }
+
+  .card,
+  .organizer-card,
+  .apply-step,
+  .phase-card {
+    padding-inline: 1.1rem;
+  }
+
+  .about-story {
+    padding-inline: 1.1rem;
+  }
+}
