@@ -1,3 +1,5 @@
+import Reveal from './components/Reveal.jsx';
+
 function SunIcon() {
   return (
     <svg viewBox="0 0 100 100" className="sun-icon-svg">
@@ -36,16 +38,18 @@ function MarqueeTrack() {
 export default function PrizePool() {
   return (
     <section className="prize-section" id="prize-pool" aria-label="Prize pool">
-      <div className="prize-rule" />
+      <Reveal>
+        <div className="prize-rule" />
 
-      <div className="marquee-row">
-        <MarqueeTrack />
-      </div>
-      <div className="marquee-row reverse">
-        <MarqueeTrack />
-      </div>
+        <div className="marquee-row">
+          <MarqueeTrack />
+        </div>
+        <div className="marquee-row reverse">
+          <MarqueeTrack />
+        </div>
 
-      <div className="prize-rule" />
+        <div className="prize-rule" />
+      </Reveal>
     </section>
   );
 }

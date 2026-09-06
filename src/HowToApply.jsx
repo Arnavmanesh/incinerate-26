@@ -1,6 +1,7 @@
 import SectionHead from './components/SectionHead.jsx'
 import Reveal from './components/Reveal.jsx'
 import Button from './components/Button.jsx'
+import { motion } from 'framer-motion'
 
 const STEPS = [
   {
@@ -52,15 +53,22 @@ export default function HowToApply() {
           ))}
         </div>
 
-        <div className="apply-grid">
+        <div className="apply-grid" style={{ perspective: 1200 }}>
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.1}>
-              <article className="apply-step">
+            <motion.div 
+              key={s.n} 
+              initial={{ opacity: 0, rotateX: -90, transformOrigin: 'top' }}
+              whileInView={{ opacity: 1, rotateX: 0 }}
+              viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+              transition={{ duration: 0.8, delay: i * 0.2, type: "spring", bounce: 0.4 }}
+              style={{ height: '100%' }}
+            >
+              <article className="apply-step" style={{ height: '100%' }}>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
                 {s.note ? <div className="apply-step-note">{s.note}</div> : null}
               </article>
-            </Reveal>
+            </motion.div>
           ))}
         </div>
 

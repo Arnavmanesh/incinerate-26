@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Timeline.css";
-import SectionHead from './components/SectionHead.jsx'
+import SectionHead from './components/SectionHead.jsx';
+import Reveal from './components/Reveal.jsx';
 
 const faqs = [
   {
@@ -41,9 +42,12 @@ export default function FAQs() {
     <section id="faqs" className="section ">
       <div className="wrap">
         {/* Section Header */}
-        <SectionHead eyebrow="FAQS" title="FREQUENTLY ASKED QUESTIONS." />
+        <Reveal>
+          <SectionHead eyebrow="FAQS" title="FREQUENTLY ASKED QUESTIONS." />
+        </Reveal>
 
         {/* FAQ Accordions */}
+        <Reveal delay={0.15}>
         <div className="faqs-list">
           {faqs.map((faq, index) => {
             const isActive = activeFaq === index;
@@ -72,6 +76,7 @@ export default function FAQs() {
             );
           })}
         </div>
+        </Reveal>
       </div>
     </section>
   );

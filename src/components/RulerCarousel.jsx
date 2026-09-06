@@ -243,9 +243,9 @@ export function RulerCarousel({
                   key={item.id}
                   id={`carousel-item-${index}`}
                   onClick={() => handleItemClick(index)}
-                  className="flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-4xl font-bold tracking-[-0.055em] text-white md:text-6xl"
+                  className="flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-5xl font-bold tracking-[-0.055em] text-white md:text-7xl"
                   animate={{
-                    scale: isActive ? 1 : 0.75,
+                    scale: isActive ? 1.3 : 0.8,
                     opacity: isActive ? 1 : 0.4,
                   }}
                   transition={

@@ -17,16 +17,20 @@ export default function Partners() {
           <SectionHead eyebrow="Our Network" title="Partners" />
         </Reveal>
 
-        <RulerCarousel originalItems={PARTNERS} />
+        <Reveal delay={0.15}>
+          <RulerCarousel originalItems={PARTNERS} />
+        </Reveal>
 
-        <div className="partners-actions">
-          <a href="#sponsor" className="btn">
-            Become a Sponsor &rarr;
-          </a>
-          <a href="#brochure" className="btn btn-ghost">
-            View Brochure
-          </a>
-        </div>
+        <Reveal delay={0.25}>
+          <div className="partners-actions">
+            <a href="#sponsor" className="btn">
+              Become a Sponsor &rarr;
+            </a>
+            <a href="#brochure" className="btn btn-ghost">
+              View Brochure
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
