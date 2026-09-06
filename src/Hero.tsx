@@ -108,15 +108,8 @@ export default function Hero() {
         <img src="/images/logos x.png" alt="×" className="collab-x" />
       </div>
 
-      {/* INCINERATE title + orbs */}
+      {/* INCINERATE title */}
       <div className="title-wrap">
-        {/* Orb 1 – large, upper-left near the I */}
-        <Orb style={{ width: 102, height: 102, left: -30, top: -50 }} />
-        {/* Orb 2 – medium, right side near A */}
-        <Orb style={{ width: 68, height: 68, right: 82, top: 51 }} />
-        {/* Orb 3 – small, lower-left */}
-        <Orb style={{ width: 45, height: 45, left: 123, top: 100 }} />
-
         <img src="/images/Group 1171275092.png" alt="INCINERATE" className="hero-title-img" />
       </div>
 

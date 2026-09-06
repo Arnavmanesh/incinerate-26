@@ -25,7 +25,7 @@ function MarqueeTrack() {
     <div className="marquee-track">
       {Array.from({ length: 6 }).map((_, i) => (
         <div className="marquee-item" key={i}>
-          <span className="marquee-txt">30K Prize Pool</span>
+          <span className="marquee-txt">50K worth of prizes</span>
           <span className="sun-icon">
             <SunIcon />
           </span>
