@@ -111,11 +111,11 @@ export default function Hero() {
       {/* INCINERATE title + orbs */}
       <div className="title-wrap">
         {/* Orb 1 – large, upper-left near the I */}
-        <Orb style={{ width: 102, height: 102, left: -30, top: -50 }} />
+        <Orb variant={1} style={{ width: 102, height: 102, left: -30, top: -50 }} />
         {/* Orb 2 – medium, right side near A */}
-        <Orb style={{ width: 68, height: 68, right: 82, top: 51 }} />
+        <Orb variant={2} style={{ width: 68, height: 68, right: 82, top: 51 }} />
         {/* Orb 3 – small, lower-left */}
-        <Orb style={{ width: 45, height: 45, left: 123, top: 100 }} />
+        <Orb variant={3} style={{ width: 45, height: 45, left: 123, top: 100 }} />
 
         <img src="/images/Group 1171275092.png" alt="INCINERATE" className="hero-title-img" />
       </div>

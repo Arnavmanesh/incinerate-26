@@ -2,12 +2,7 @@ import { useEffect, useRef } from "react";
 
 /**
  * Scroll-driven fiery ribbon background.
- * Renders behind everything (fixed, full-viewport canvas) and cycles
- * through 3 wave patterns as the user scrolls — one pattern per
- * viewport-height, with a smooth bell-curve fade between them.
- *
- * Usage: render once, near the top of <main>, before your other
- * background layers (or in place of them — see notes in chat).
+ * Optimized with mobile adaptive quality & resolution scaling.
  */
 export default function BackgroundCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -25,9 +20,19 @@ export default function BackgroundCanvas() {
     let targetScrollY = 0;
     let rafId = 0;
 
+    const isMobile = window.innerWidth <= 768;
+
     function resize() {
-      width = canvas!.width = window.innerWidth;
-      height = canvas!.height = window.innerHeight;
+      // Cap maximum internal canvas buffer resolution to prevent performance drops on 4K/High-DPI displays
+      const maxW = isMobile ? 1280 : 1920;
+      const maxH = isMobile ? 720 : 1080;
+      const baseScale = isMobile ? 0.75 : 1;
+      const rawW = window.innerWidth * baseScale;
+      const rawH = window.innerHeight * baseScale;
+      const scaleRatio = Math.min(1, maxW / rawW, maxH / rawH);
+
+      width = canvas!.width = Math.floor(rawW * scaleRatio);
+      height = canvas!.height = Math.floor(rawH * scaleRatio);
     }
     resize();
     window.addEventListener("resize", resize);
@@ -35,7 +40,7 @@ export default function BackgroundCanvas() {
     const onScroll = () => {
       targetScrollY = window.scrollY;
     };
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     function getPatternY(patternId: number, x: number, i: number, localStep: number) {
       if (patternId === 0) {
@@ -54,9 +59,11 @@ export default function BackgroundCanvas() {
     }
 
     function drawSegmentedWaves(scrollY: number) {
-      const lineCount = 45;
-      const sectionSpacing = height * 1.0;
+      // Mobile performance tuning: fewer lines and larger step increments
+      const lineCount = isMobile ? 20 : 36;
+      const xStep = isMobile ? 28 : 22;
 
+      const sectionSpacing = height * 1.0;
       const rawProgress = scrollY / sectionSpacing;
       const currentPatternIdx = Math.floor(rawProgress);
       const progressWithinSection = rawProgress - currentPatternIdx;
@@ -75,14 +82,14 @@ export default function BackgroundCanvas() {
         ctx!.beginPath();
 
         const progress = i / (lineCount - 1);
-        const baseAlpha = Math.pow(Math.sin(progress * Math.PI), 1.8) * 0.55;
+        const baseAlpha = Math.pow(Math.sin(progress * Math.PI), 1.8) * (isMobile ? 0.65 : 0.55);
         const finalAlpha = baseAlpha * gapVisibility;
         if (finalAlpha <= 0.01) continue;
 
         ctx!.strokeStyle = `rgba(235, 60, 20, ${finalAlpha})`;
-        ctx!.lineWidth = 1.2;
+        ctx!.lineWidth = isMobile ? 1.5 : 1.2;
 
-        for (let x = 0; x <= width; x += 12) {
+        for (let x = 0; x <= width; x += xStep) {
           const waveY = getPatternY(currentPatternIdx % 3, x, i, step);
           const y = translateY + waveY;
           if (x === 0) ctx!.moveTo(x, y);
@@ -98,9 +105,13 @@ export default function BackgroundCanvas() {
       ctx!.fillStyle = "#050202";
       ctx!.fillRect(0, 0, width, height);
 
-      ctx!.globalCompositeOperation = "lighter";
+      if (!isMobile) {
+        ctx!.globalCompositeOperation = "lighter";
+      }
       drawSegmentedWaves(currentScrollY);
-      ctx!.globalCompositeOperation = "source-over";
+      if (!isMobile) {
+        ctx!.globalCompositeOperation = "source-over";
+      }
 
       step += 0.008;
       rafId = requestAnimationFrame(animate);

@@ -187,14 +187,24 @@
   }
 }
 
+.embers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
 /* Center composition holding the logo */
 .loader-center {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 40;
-  width: min(60vw, 800px);
-  max-width: 80vw;
-  display: grid;
-  place-items: center;
+  width: min(85vw, 800px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   pointer-events: none;
 }
 
@@ -425,16 +435,25 @@
 }
 
 @media (max-width: 480px) {
+  .loader-center {
+    width: 88vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   .loader-logo-center {
-    width: 78vw
+    width: 82vw;
+    margin: 0 auto;
+    display: block;
   }
 
   .plasma {
-    filter: blur(18px)
+    filter: blur(18px);
   }
 
   .final-burst {
-    filter: blur(18px)
+    filter: blur(18px);
   }
 }
 

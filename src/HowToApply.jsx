@@ -64,7 +64,7 @@ export default function HowToApply() {
           ))}
         </div>
 
-        <Reveal className="mt-10 text-center">
+        <Reveal className="mt-10 flex justify-center text-center">
           <Button href="#apply">
             Start your application
             <ArrowIcon />

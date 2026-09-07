@@ -1,11 +1,9 @@
 import { useState } from "react";
 import Loader from "./Loader";
-// import Navbar from "./Navbar";
 import Navbar from "./Nav.jsx";
 import Hero from "./Hero";
 import PrizePool from "./PrizePool";
 import Partners from "./Partners.jsx";
-import About from "./About";
 import Timeline from "./Timeline";
 import FAQs from "./FAQs";
 import BackgroundCanvas from "./BackgroundCanvas";
@@ -20,8 +18,8 @@ export default function App() {
   return (
     <>
       {showLoader && <Loader onComplete={() => setShowLoader(false)} />}
-      <div className="glow-orb one"></div>
-      <div className="glow-orb two"></div>
+      {/* <div className="glow-orb one"></div>
+      <div className="glow-orb two"></div> */}
       <BackgroundCanvas />
 
       <main className="incinerate-shell">

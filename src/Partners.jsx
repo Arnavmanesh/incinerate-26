@@ -23,7 +23,7 @@ export default function Partners() {
           <a href="#sponsor" className="btn">
             Become a Sponsor &rarr;
           </a>
-          <a href="#brochure" className="btn btn-ghost">
+          <a href="/brochure.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
             View Brochure
           </a>
         </div>
