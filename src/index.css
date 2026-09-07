@@ -754,10 +754,36 @@ Reference: 3 circles ~130px, glassmorphism discs,
 no background panel, floated directly over bg
 ───────────────────────────────────────────── */
 .countdown-row {
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   align-items: center;
   gap: 18px;
+}
+
+.countdown-heading {
+  margin-top: 50px;
+  font-family: 'Inter', sans-serif;
+  display: inline-block;
+  color: #ff5a1f;
+  font-size: .75rem;
+  letter-spacing: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  text-align: center;
+  animation: countdown-heading-in 0.45s ease both;
+}
+
+@keyframes countdown-heading-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Circular disc */
@@ -1067,6 +1093,24 @@ RESPONSIVE
     margin-bottom: 36px;
   }
 }
+
+/* @media (max-width: 639px) {
+  .countdown-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    transform: none;
+  }
+
+  .countdown-row .sep-dots {
+    display: none;
+  }
+
+  .countdown-row .flip-unit {
+    width: 100%;
+  }
+} */
 
 @media (max-width: 480px) {
   .hero-section {

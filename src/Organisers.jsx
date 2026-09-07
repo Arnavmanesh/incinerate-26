@@ -122,7 +122,9 @@ export default function Organisers() {
   return (
     <section id="organisers" className="section">
       <div className="wrap">
-        <SectionHead eyebrow="About Organisers" title="Three chapters. One fire." />
+        <Reveal>
+          <SectionHead eyebrow="About Organisers" title="Three chapters. One fire." />
+        </Reveal>
         <div className="organizer-grid">
           {ORGS.map((o, i) => (
             <Reveal key={o.name} delay={i * 0.12}>
