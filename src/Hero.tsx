@@ -32,12 +32,33 @@ function SeparatorDots() {
   );
 }
 
-function useCountdown(targetDate: Date) {
+const COUNTDOWN_PHASES = [
+  {
+    label: "REGISTRATION CLOSES IN",
+    target: new Date("2026-09-14T00:00:00+05:30"),
+  },
+  {
+    label: "ONLINE PITCHING CLOSES IN",
+    target: new Date("2026-09-20T00:00:00+05:30"),
+  },
+  {
+    label: "BUILD SPRINT ENDS IN",
+    target: new Date("2026-10-05T00:00:00+05:30"),
+  },
+  {
+    label: "GRAND FINALE BEGINS IN",
+    target: new Date("2026-10-10T00:00:00+05:30"),
+  },
+];
+
+function useCountdown() {
   const calc = () => {
-    const diff = targetDate.getTime() - Date.now();
+    const phase = COUNTDOWN_PHASES.find(({ target }) => target.getTime() > Date.now());
+    const diff = phase ? phase.target.getTime() - Date.now() : 0;
 
     if (diff <= 0) {
       return {
+        label: "INCINERATE HAS BEGUN",
         days: "00",
         hours: "00",
         minutes: "00",
@@ -53,6 +74,7 @@ function useCountdown(targetDate: Date) {
     const pad = (n: number) => String(n).padStart(2, "0");
 
     return {
+      label: phase?.label ?? "INCINERATE HAS BEGUN",
       days: pad(d),
       hours: pad(h),
       minutes: pad(m),
@@ -71,8 +93,7 @@ function useCountdown(targetDate: Date) {
 }
 
 export default function Hero() {
-  const target = new Date("2026-10-04T00:00:00+05:30");
-  const { days, hours, minutes, seconds } = useCountdown(target);
+  const { label, days, hours, minutes, seconds } = useCountdown();
 
   const heroParticles = useMemo(
     () =>
@@ -149,6 +170,9 @@ export default function Hero() {
       </div> */}
 
       {/* Countdown */}
+      <p key={label} className="countdown-heading" aria-live="polite">
+        {label}
+      </p>
       <div className="countdown-row">
         <CountdownCircle value={days} label="Days" />
         <SeparatorDots />

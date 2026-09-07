@@ -4,9 +4,9 @@ import { RulerCarousel } from './components/RulerCarousel.jsx'
 import './Timeline.css'
 
 const PARTNERS = [
-  { id: 1, title: 'μLearn', tagline: 'Community Partner' },
-  { id: 2, title: 'Jain University', tagline: 'Venue Partner' },
-  { id: 3, title: 'IEDC Kerala', tagline: 'Community Partner' },
+  { id: 1, title: 'Jain University', logo: '/images/jkulogo.png', tagline: 'Venue Partner' },
+  { id: 2, title: 'IEDC Kerala', logo: '/images/IEDCLOGO.png', tagline: 'Community Partner' },
+  { id: 3, title: 'μLearn', logo: '/images/mulearnlogo.png', tagline: 'Community Partner' },
 ]
 
 export default function Partners() {

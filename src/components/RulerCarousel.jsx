@@ -221,7 +221,7 @@ export function RulerCarousel({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative flex h-[200px] w-full flex-col justify-center">
+      <div className="relative flex h-[260px] w-full flex-col justify-center">
         <div className="flex items-center justify-center">
           <RulerLines top isDark={isDark} activeIndex={activeIndex} />
         </div>
@@ -243,7 +243,7 @@ export function RulerCarousel({
                   key={item.id}
                   id={`carousel-item-${index}`}
                   onClick={() => handleItemClick(index)}
-                  className="flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-5xl font-bold tracking-[-0.055em] text-white md:text-7xl"
+                  className="partner-carousel-slide flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-5xl font-bold tracking-[-0.055em] text-white md:text-7xl"
                   animate={{
                     scale: isActive ? 1.3 : 0.8,
                     opacity: isActive ? 1 : 0.4,
@@ -253,11 +253,15 @@ export function RulerCarousel({
                       ? { duration: 0 }
                       : { type: 'spring', stiffness: 400, damping: 25 }
                   }
-                  style={{ width: '400px' }}
+                  style={{ width: '400px', height: '180px', flexShrink: 0 }}
                 >
-                  <span>{item.title}</span>
+                  <img
+                    src={item.logo}
+                    alt={item.title}
+                    className="partner-carousel-logo h-24 w-64 object-contain md:h-32 md:w-80"
+                  />
                   {item.tagline && (
-                    <span className="mt-2 text-xs font-mono tracking-[0.2em] text-[#ff562d] uppercase md:text-sm">
+                    <span className="partner-carousel-tagline mt-2 text-xs font-mono tracking-[0.2em] text-[#ff562d] uppercase md:text-sm">
                       {item.tagline}
                     </span>
                   )}
