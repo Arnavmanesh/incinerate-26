@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion, motion } from 'framer-motion'
 import SectionHead from './components/SectionHead'
 import './Timeline.css'
 import TiltedCard from './components/TiltedCard'
@@ -12,7 +12,7 @@ const PHASES = [
   {
     phase: 'Phase 0',
     title: 'Registration, Submission & Shortlisting',
-    date: 'August 31 – September 13',
+    date: 'September 04 – September 16',
     desc: 'Register, submit your idea, and compete for a spot among the top 40 teams.',
     steps: [
       { num: '01', title: 'Register & Submit', desc: 'Register and submit your idea.' },
@@ -24,7 +24,7 @@ const PHASES = [
   {
     phase: 'Phase 1',
     title: 'Online Pitching & Shortlisting',
-    date: 'September 15 – September 19',
+    date: 'September 17 – September 21',
     desc: 'Pitch your solution and compete for the top 20.',
     steps: [
       { num: '01', title: 'Online Pitch', desc: 'Present your solution in 5 minutes.' },
@@ -36,7 +36,7 @@ const PHASES = [
   {
     phase: 'Phase 2',
     title: 'Build Phase & Final Shortlisting',
-    date: 'September 20 – October 4',
+    date: 'September 22 – October 05',
     desc: 'Build, refine, and validate your product with expert guidance.',
     steps: [
       { num: '01', title: 'Build', desc: 'Develop and test your product.' },
@@ -137,12 +137,19 @@ export default function Timeline() {
             <span className="phase-rail-fill" ref={fillRef} />
           </div>
 
-          {PHASES.map((p) => {
+          {PHASES.map((p, index) => {
             const dotLabel = p.phase.replace(/[^0-9]/g, '').padStart(2, '0')
+            const initialX = index % 2 === 0 ? -50 : 50;
             return (
               <div key={p.phase} className="phase-node">
                 <div className="phase-node-dot">{dotLabel}</div>
-                <div className="phase-card">
+                <motion.div
+                  className="phase-card"
+                  initial={{ opacity: 0, x: initialX, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "0px 0px -15% 0px" }}
+                  transition={{ duration: 0.8, delay: index * 0.15, type: "spring", bounce: 0.25 }}
+                >
                   <div className="phase-header-tag">
                     <span className="phase-num">{p.phase}</span>
                     <span className="phase-chip">{p.date}</span>
@@ -161,7 +168,7 @@ export default function Timeline() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
                 <span className="phase-spacer" />
               </div>
             )

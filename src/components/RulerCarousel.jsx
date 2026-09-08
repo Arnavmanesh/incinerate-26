@@ -114,7 +114,7 @@ export function RulerCarousel({
   originalItems,
   tone = 'dark',
   autoplay = true,
-  autoplayInterval = 1800,
+  autoplayInterval = 2000,
 }) {
   const isDark = tone === 'dark'
   const infiniteItems = createInfiniteItems(originalItems)
@@ -125,9 +125,11 @@ export function RulerCarousel({
   const [activeIndex, setActiveIndex] = useState(itemsPerSet + startOrigin)
   const [isResetting, setIsResetting] = useState(false)
   const [paused, setPaused] = useState(false)
+  const [userInteracted, setUserInteracted] = useState(false)
 
   const handleItemClick = (newIndex) => {
     if (isResetting) return
+    setUserInteracted(true)
 
     const targetOriginalIndex = newIndex % itemsPerSet
     const possibleIndices = [
@@ -152,13 +154,23 @@ export function RulerCarousel({
 
   const handlePrevious = () => {
     if (isResetting) return
+    setUserInteracted(true)
     setActiveIndex((prev) => prev - 1)
   }
 
   const handleNext = () => {
     if (isResetting) return
+    setUserInteracted(true)
     setActiveIndex((prev) => prev + 1)
   }
+
+  useEffect(() => {
+    if (!userInteracted) return
+    const timer = setTimeout(() => {
+      setUserInteracted(false)
+    }, autoplayInterval)
+    return () => clearTimeout(timer)
+  }, [userInteracted, activeIndex, autoplayInterval])
 
   useEffect(() => {
     if (isResetting) return
@@ -184,14 +196,14 @@ export function RulerCarousel({
   }, [activeIndex, itemsPerSet, isResetting])
 
   useEffect(() => {
-    if (!autoplay || paused) return
+    if (!autoplay || paused || userInteracted) return
 
     const id = setInterval(() => {
       setActiveIndex((prev) => prev + 1)
     }, autoplayInterval)
 
     return () => clearInterval(id)
-  }, [autoplay, autoplayInterval, paused])
+  }, [autoplay, autoplayInterval, paused, userInteracted])
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -221,7 +233,7 @@ export function RulerCarousel({
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative flex h-[200px] w-full flex-col justify-center">
+      <div className="relative flex h-[260px] w-full flex-col justify-center">
         <div className="flex items-center justify-center">
           <RulerLines top isDark={isDark} activeIndex={activeIndex} />
         </div>
@@ -243,9 +255,9 @@ export function RulerCarousel({
                   key={item.id}
                   id={`carousel-item-${index}`}
                   onClick={() => handleItemClick(index)}
-                  className="flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-4xl font-bold tracking-[-0.055em] text-white md:text-6xl"
+                  className="partner-carousel-slide flex cursor-pointer flex-col items-center justify-center whitespace-nowrap text-5xl font-bold tracking-[-0.055em] text-white md:text-7xl"
                   animate={{
-                    scale: isActive ? 1 : 0.75,
+                    scale: isActive ? 1.3 : 0.8,
                     opacity: isActive ? 1 : 0.4,
                   }}
                   transition={
@@ -253,11 +265,15 @@ export function RulerCarousel({
                       ? { duration: 0 }
                       : { type: 'spring', stiffness: 400, damping: 25 }
                   }
-                  style={{ width: '400px' }}
+                  style={{ width: '400px', height: '180px', flexShrink: 0 }}
                 >
-                  <span>{item.title}</span>
+                  <img
+                    src={item.logo}
+                    alt={item.title}
+                    className="partner-carousel-logo h-20 w-52 object-contain md:h-32 md:w-80"
+                  />
                   {item.tagline && (
-                    <span className="mt-2 text-xs font-mono tracking-[0.2em] text-[#ff562d] uppercase md:text-sm">
+                    <span className="partner-carousel-tagline mt-2 text-xs font-mono tracking-[0.2em] text-[#ff562d] uppercase md:text-sm">
                       {item.tagline}
                     </span>
                   )}

@@ -1,30 +1,33 @@
 import SectionHead from './components/SectionHead.jsx'
 import Reveal from './components/Reveal.jsx'
 import Button from './components/Button.jsx'
+import { motion } from 'framer-motion'
+
+const REGISTRATION_DEADLINE = 'September 16th'
 
 const STEPS = [
   {
-    n: '1',
-    title: 'Submit',
-    body: 'Apply with your idea before the deadline. Keep it sharp — one paragraph, the problem, and why you’re the team to solve it.',
-    note: 'Deadline: REGISTRATION_DEADLINE',
+    n: '01',
+    title: 'IGNITE',
+    body: 'Submit your idea and present a clear solution to a real-world problem.',
+    note: `REGISTRATION DEADLINE = ${REGISTRATION_DEADLINE}`,
   },
   {
-    n: '2',
-    title: 'Ideation Burn',
-    body: 'Refine the core of your idea under mentor scrutiny. Expect the soft spot in your logic to get found — that’s the point.',
+    n: '02',
+    title: 'DISCOVER',
+    body: 'Ideas are reviewed for originality, feasibility, and impact, with the strongest moving forward.',
     note: null,
   },
   {
-    n: '3',
-    title: 'The Refinery',
-    body: 'Build, validate, and pressure-test with real users and reviewers. Ship a prototype that survives contact with reality.',
+    n: '03',
+    title: 'BUILD',
+    body: 'Turn your idea into a working prototype with mentor guidance, feedback, and refinement.',
     note: null,
   },
   {
-    n: '4',
-    title: 'The Inferno',
-    body: 'Pitch live to judges, investors, and the room that decides what’s next. Leave with a win — or a deal — or both.',
+    n: '04',
+    title: 'SHOWCASE',
+    body: 'Present your product through a live demo and pitch before judges, mentors, and industry experts.',
     note: null,
   },
 ]
@@ -41,7 +44,7 @@ export default function HowToApply() {
   return (
     <section id="apply" className="section">
       <div className="wrap">
-        <SectionHead eyebrow="How to Apply" title="Four steps from idea to Inferno" />
+        <SectionHead eyebrow="How to Apply" title="THE JOURNEY BEYOND THE IDEA" />
 
         <div className="apply-track" aria-hidden="true">
           <span className="apply-track-line" />
@@ -52,21 +55,28 @@ export default function HowToApply() {
           ))}
         </div>
 
-        <div className="apply-grid">
+        <div className="apply-grid" style={{ perspective: 1200 }}>
           {STEPS.map((s, i) => (
-            <Reveal key={s.n} delay={i * 0.1}>
-              <article className="apply-step">
+            <motion.div
+              key={s.n}
+              initial={{ opacity: 0, rotateX: -90, transformOrigin: 'top' }}
+              whileInView={{ opacity: 1, rotateX: 0 }}
+              viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+              transition={{ duration: 0.8, delay: i * 0.2, type: "spring", bounce: 0.4 }}
+              style={{ height: '100%' }}
+            >
+              <article className="apply-step" style={{ height: '100%' }}>
                 <h3>{s.title}</h3>
                 <p>{s.body}</p>
                 {s.note ? <div className="apply-step-note">{s.note}</div> : null}
               </article>
-            </Reveal>
+            </motion.div>
           ))}
         </div>
 
-        <Reveal className="mt-10 flex justify-center text-center">
+        <Reveal className="mt-10 text-center">
           <Button href="#apply">
-            Start your application
+            START YOUR APPLICATION
             <ArrowIcon />
           </Button>
         </Reveal>
