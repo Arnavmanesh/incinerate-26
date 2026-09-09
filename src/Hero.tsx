@@ -35,15 +35,15 @@ function SeparatorDots() {
 const COUNTDOWN_PHASES = [
   {
     label: "REGISTRATION CLOSES IN",
-    target: new Date("2026-09-14T00:00:00+05:30"),
+    target: new Date("2026-09-17T00:00:00+05:30"),
   },
   {
     label: "ONLINE PITCHING CLOSES IN",
-    target: new Date("2026-09-20T00:00:00+05:30"),
+    target: new Date("2026-09-22T00:00:00+05:30"),
   },
   {
     label: "BUILD SPRINT ENDS IN",
-    target: new Date("2026-10-05T00:00:00+05:30"),
+    target: new Date("2026-10-06T00:00:00+05:30"),
   },
   {
     label: "GRAND FINALE BEGINS IN",

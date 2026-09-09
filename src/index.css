@@ -1071,17 +1071,23 @@ RESPONSIVE
     font-size: 15px;
   }
 
-  /* Hide last separator dots and seconds block on mobile */
-  .countdown-row> :nth-last-child(-n+2) {
+  /* Countdown 2x2 Grid for Mobile */
+  .countdown-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 250px;
+    margin: 16px auto 24px auto;
+    transform: none;
+  }
+
+  .countdown-row .sep-dots {
     display: none !important;
   }
 
-  /* Countdown & CTA Button Spacing */
-  .countdown-row {
-    margin-top: 0px;
-    margin-bottom: 24px;
-    transform: scale(.74);
-    transform-origin: center;
+  .countdown-row .flip-unit {
+    width: 100%;
   }
 
   .planet-wrap {
@@ -1093,24 +1099,6 @@ RESPONSIVE
     margin-bottom: 36px;
   }
 }
-
-/* @media (max-width: 639px) {
-  .countdown-row {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-    transform: none;
-  }
-
-  .countdown-row .sep-dots {
-    display: none;
-  }
-
-  .countdown-row .flip-unit {
-    width: 100%;
-  }
-} */
 
 @media (max-width: 480px) {
   .hero-section {
@@ -1135,7 +1123,7 @@ RESPONSIVE
   }
 
   .countdown-row {
-    transform: scale(0.74);
+    transform: none;
   }
 }
 

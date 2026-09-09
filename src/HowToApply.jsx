@@ -75,7 +75,7 @@ export default function HowToApply() {
         </div>
 
         <Reveal className="mt-10 text-center">
-          <Button href="#apply">
+          <Button href="https://makemypass.com/event/incinerate26" target="_blank" rel="noopener noreferrer">
             START YOUR APPLICATION
             <ArrowIcon />
           </Button>

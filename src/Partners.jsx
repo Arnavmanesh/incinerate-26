@@ -5,7 +5,7 @@ import './Timeline.css'
 
 const PARTNERS = [
   { id: 1, title: 'Jain University', logo: '/images/jkulogo.png', tagline: 'Venue Partner' },
-  { id: 2, title: 'IEDC Kerala', logo: '/images/IEDCLOGO.png', tagline: 'Innovation Partner' },
+  { id: 2, title: 'IEDC Kerala', logo: '/images/IEDCLOGO.png', tagline: 'Ecosystem Partner' },
   { id: 3, title: 'μLearn', logo: '/images/mulearnlogo.png', tagline: 'Community Partner' },
 ]
 
@@ -22,7 +22,12 @@ export default function Partners() {
 
         <Reveal delay={0.25}>
           <div className="partners-actions">
-            <a href="#sponsor" className="btn">
+            <a
+              href="https://forms.gle/HUrzQP1NXtgw8FqG9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn"
+            >
               Become a Sponsor &rarr;
             </a>
             <a
