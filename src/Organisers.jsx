@@ -84,9 +84,7 @@ function OrgCard({ o }) {
             </div>
 
             <p>{o.body}</p>
-            <a className="organizer-link" href="#organisers" target="_blank" rel="noopener" style={{ marginBottom: '1.2rem' }}>
-              Visit chapter <ArrowIcon />
-            </a>
+
             <div className="social-row">
               <a
                 href={o.instagram}
