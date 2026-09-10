@@ -11,6 +11,7 @@ import Footer from "./Footer"
 import Organizer from "./Organisers.jsx"
 import HowToApply from "./HowToApply.jsx"
 import Aboutinc from "./AboutIncinerate.jsx"
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const [showLoader, setShowLoader] = useState(true);
@@ -23,6 +24,7 @@ export default function App() {
       <BackgroundCanvas />
 
       <main className="incinerate-shell">
+        <Analytics />
         <Navbar />
         <Hero />
         <Aboutinc />
